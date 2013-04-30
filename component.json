@@ -1,0 +1,13 @@
+{
+  "name": "is-near",
+  "repo": "pazguille/is-near",
+  "description": "Check if an element is near to other element (based on pixel dimensions) or a particular point (x,y).",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ]
+}
