@@ -3,7 +3,15 @@
   "repo": "pazguille/is-near",
   "description": "Check if an element is near to other element (based on pixel dimensions) or a particular point (x,y).",
   "version": "0.0.1",
-  "keywords": [],
+  "author": "Guille Paz <guille87paz@gmail.com>",
+  "twitter": "@pazguille",
+  "keywords": [
+    "position",
+    "elements",
+    "points",
+    "closest",
+    "nearest"
+  ],
   "dependencies": {},
   "development": {},
   "license": "MIT",
