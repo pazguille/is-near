@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>is-near Component</title>
+        <style>
+
+            #a, #b {
+                width: 100px;
+                height: 100px;
+                position: absolute;
+            }
+
+            #a {
+                top: 420px;
+                right: 500px;
+                background-color: red;
+            }
+
+            #b {
+                top: 100px;
+                left: 500px;
+                background-color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="a"></div>
+        <!--div id="b"></div-->
+        <script/ src="../index.js"></script>
+        <script>
+            // var isNear = require('is-near'),
+            var elA = document.getElementById('a');
+
+            function calculateCenter(el) {
+                var clientRect = el.getBoundingClientRect();
+
+                return {
+                    'x': clientRect.left + elA.clientHeight/2,
+                    'y': clientRect.top + el.clientWidth/2
+                }
+            }
+
+            function isNear(pointA, pointB, delta) {
+                delta = delta || 100;
+                var distance = Math.floor(Math.sqrt(Math.pow(pointA.x - pointB.x, 2) + Math.pow(pointA.y - pointB.y, 2))),
+                    isnear = false;
+
+                if (distance <= delta) {
+                    isnear = true;
+                }
+
+                return isnear;
+            }
+
+            document.addEventListener('mousemove', function (eve) {
+                    var coordX = 0,
+                        coordY = 0,
+                        mousePoints,
+                        elPoints;
+
+                    eve = eve || window.event;
+
+                    if (eve.pageX || eve.pageY) {
+                        coordX = eve.pageX;
+                        coordY = eve.pageY;
+
+                    } else {
+                        coordX = eve.clientX + doc.body.scrollLeft + docEl.scrollLeft;
+                        coordY = eve.clientY + doc.body.scrollTop + docEl.scrollTop;
+                    }
+
+                    mousePoints = {
+                        'x': coordX,
+                        'y': coordY
+                    };
+
+                    elPoints = calculateCenter(elA);
+
+                    console.log(isNear(elPoints, mousePoints));
+            });
+        </script>
+    </body>
+</html>
