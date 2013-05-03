@@ -12,7 +12,7 @@
             }
 
             #a {
-                top: 420px;
+                top: 220px;
                 right: 500px;
                 background-color: red;
             }
@@ -32,32 +32,10 @@
             // var isNear = require('is-near'),
             var elA = document.getElementById('a');
 
-            function calculateCenter(el) {
-                var clientRect = el.getBoundingClientRect();
-
-                return {
-                    'x': clientRect.left + elA.clientHeight/2,
-                    'y': clientRect.top + el.clientWidth/2
-                }
-            }
-
-            function isNear(pointA, pointB, delta) {
-                delta = delta || 100;
-                var distance = Math.floor(Math.sqrt(Math.pow(pointA.x - pointB.x, 2) + Math.pow(pointA.y - pointB.y, 2))),
-                    isnear = false;
-
-                if (distance <= delta) {
-                    isnear = true;
-                }
-
-                return isnear;
-            }
-
             document.addEventListener('mousemove', function (eve) {
                     var coordX = 0,
                         coordY = 0,
-                        mousePoints,
-                        elPoints;
+                        mousePoints;
 
                     eve = eve || window.event;
 
@@ -75,9 +53,7 @@
                         'y': coordY
                     };
 
-                    elPoints = calculateCenter(elA);
-
-                    console.log(isNear(elPoints, mousePoints));
+                    elA.innerHTML = isNear(elA, mousePoints);
             });
         </script>
     </body>
