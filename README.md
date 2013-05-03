@@ -1,6 +1,6 @@
 # is-near
 
-Check if an element is near to  a particular point (x,y) or other element (based on pixel dimensions).
+Check if an element is near to a given point (x,y) or other element (based on pixel dimensions).
 
 ## Installation
 
