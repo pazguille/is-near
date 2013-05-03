@@ -2,23 +2,46 @@
     'use strict';
 
     /**
-     * Create a new router.
-     * @constructor
-     * @property {array} paths
-     * @property {string} regexp
+     * Calculates the center of given element.
+     * @function
+     * @param {DOMElement} el - A DOM element to calculate its center.
      * @returns {Object}
      */
-    function isNear(elA, points) {
+    function calculateCenter(el) {
+        var clientRect = el.getBoundingClientRect();
 
+        return {
+            'x': clientRect.left + elA.clientHeight/2,
+            'y': clientRect.top + el.clientWidth/2
+        }
     }
 
-    // module.exports = function (el, selector) {
-    //     var children = [].slice.call(el.children);
+    /**
+     * Calculate distance between two points.
+     * @function
+     * @returns {Number}
+     */
+    function calculateDistance (a, b) {
+        return Math.floor(Math.sqrt(Math.pow(a.x - b.x, 2) + Math.pow(a.y - b.y, 2)));
+    }
 
-    //     return selector ? children.filter(function (el) {
-    //         return matches(el, selector)
-    //     }) : children
-    // }
+    /**
+     * Calculates if a given point is near to an element.
+     * @function
+     * @returns {Boolean}
+     */
+    function isNear(el, points, delta) {
+        delta = delta || 100;
+        var pointA = calculateCenter(el),
+            distance = calculateDistance(pointA, points),
+            isnear = false;
+
+        if (distance <= delta) {
+            isnear = true;
+        }
+
+        return isnear;
+    }
 
     /**
      * Expose isNear
