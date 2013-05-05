@@ -1,6 +1,6 @@
 # is-near
 
-Calculates if the mouse pointer position is near to a given element.
+Calculates if the mouse position is near to a given element.
 
 ## Installation
 
