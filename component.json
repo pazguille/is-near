@@ -1,7 +1,7 @@
 {
   "name": "is-near",
   "repo": "pazguille/is-near",
-  "description": "Check if an element is near to a given point (x,y) or other element (based on pixel dimensions).",
+  "description": "Calculates if the mouse pointer position is near to a given element.",
   "version": "0.0.1",
   "author": "Guille Paz <guille87paz@gmail.com>",
   "twitter": "@pazguille",
