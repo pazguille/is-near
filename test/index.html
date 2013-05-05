@@ -4,57 +4,31 @@
         <meta charset="utf-8" />
         <title>is-near Component</title>
         <style>
-
-            #a, #b {
-                width: 100px;
-                height: 100px;
-                position: absolute;
-            }
-
             #a {
-                top: 220px;
-                right: 500px;
+                height: 250px;
+                position: absolute;
+                width: 400px;
+                top: 150px;
+                right: 560px;
                 background-color: red;
-            }
-
-            #b {
-                top: 100px;
-                left: 500px;
-                background-color: blue;
+                line-height: 120px;
+                text-align: center;
             }
         </style>
     </head>
     <body>
         <div id="a"></div>
-        <!--div id="b"></div-->
-        <script/ src="../index.js"></script>
+
+        <script src="../build/build.js"></script>
+        <!--script src="../standalone/is-near.js"></script-->
         <script>
-            // var isNear = require('is-near'),
-            var elA = document.getElementById('a');
+            var isNear = require('is-near'),
+                elA = document.getElementById('a');
 
-            document.addEventListener('mousemove', function (eve) {
-                    var coordX = 0,
-                        coordY = 0,
-                        mousePoints;
-
-                    eve = eve || window.event;
-
-                    if (eve.pageX || eve.pageY) {
-                        coordX = eve.pageX;
-                        coordY = eve.pageY;
-
-                    } else {
-                        coordX = eve.clientX + doc.body.scrollLeft + docEl.scrollLeft;
-                        coordY = eve.clientY + doc.body.scrollTop + docEl.scrollTop;
-                    }
-
-                    mousePoints = {
-                        'x': coordX,
-                        'y': coordY
-                    };
-
-                    elA.innerHTML = isNear(elA, mousePoints);
+            document.addEventListener('click', function () {
+                elA.innerHTML = isNear(elA);
             });
+
         </script>
     </body>
 </html>
