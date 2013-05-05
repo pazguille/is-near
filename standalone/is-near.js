@@ -31,38 +31,35 @@
     });
 
     /**
-     * Calculates if the mouse pointer position is near to a given element.
+     * Calculates if the mouse position is near to a given element.
      * @function
-     * @param {DOMElement} elementA - A given DOMElement.
-     * @param {DOMElement} elementB - A given DOMElement.
-     * @param {Number} delta - .
+     * @param {DOMElement} element - A given DOMElement.
+     * @param {Number} padding - padding
      * @returns {Boolean}
      */
-    function isNear(element, delta) {
+    function isNear(element, padding) {
+
+        padding = padding || 100;
 
         var clientRect = element.getBoundingClientRect(),
-            delta = delta || 100,
             shadow = {
-                'top': clientRect.top - delta,
-                'right': clientRect.right + delta,
-                'bottom': clientRect.bottom + delta,
-                'left': clientRect.left - delta
+                'top': clientRect.top - padding,
+                'right': clientRect.right + padding,
+                'bottom': clientRect.bottom + padding,
+                'left': clientRect.left - padding
             },
             near = false;
 
         if ((mousePoint.x >= shadow.left && mousePoint.x <= shadow.right) && (mousePoint.y >= shadow.top && mousePoint.y <= shadow.bottom)) {
 
             if ((mousePoint.x >= clientRect.left && mousePoint.x <= clientRect.right) && (mousePoint.y >= clientRect.top && mousePoint.y <= clientRect.bottom)) {
-
                 near = 'inside';
 
             } else {
-
                 near = true;
             }
 
         } else {
-
             near = false;
         }
 
