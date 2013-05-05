@@ -2,7 +2,7 @@
   "name": "is-near",
   "repo": "pazguille/is-near",
   "description": "Calculates if the mouse position is near to a given element.",
-  "version": "0.0.1",
+  "version": "0.1",
   "author": "Guille Paz <guille87paz@gmail.com>",
   "twitter": "@pazguille",
   "keywords": [
