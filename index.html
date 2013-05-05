@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>is-near Component</title>
+        <style>
+            html {
+                cursor: crosshair;
+            }
+
+            body {
+                font-family: "Helvetica Neue", Helvetica, Arial, serif;
+                background-color: #ecf0f1;
+                color: #34495e;
+                text-shadow: 0 -1px #2c3e50;
+            }
+
+            h1 {
+                text-align: center;
+                font-size: 4em;
+                margin: 0;
+            }
+
+            #box {
+                width: 200px;
+                height: 200px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-top: -100px;
+                margin-left: -100px;
+                background-color: #c0392b;
+                line-height: 200px;
+                text-align: center;
+                font-size: 3em;
+                color: #fff;
+                border: 7px solid #2c3e50;
+                -webkit-transition: background-color 200ms ease-in-out;
+                transition: background-color 200ms ease-in-out;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Is mouse near to the box?</h1>
+        <div id="box">No</div>
+
+        <script src="build/build.js"></script>
+        <script>
+            var isNear = require('is-near'),
+                box = document.getElementById('box');
+
+            document.addEventListener('mousemove', function () {
+                var near = isNear(box, 50);
+
+                if (near) {
+
+                    if (near === 'inside') {
+                        box.style.backgroundColor = '#8e44ad';
+                        box.innerHTML = 'Inside';
+                    } else {
+                        box.style.backgroundColor = '#2ecc71';
+                        box.innerHTML = 'Yes';
+                    }
+
+                } else {
+                    box.style.backgroundColor = '#c0392b';
+                    box.innerHTML = 'No';
+                }
+            });
+
+        </script>
+    </body>
+</html>
