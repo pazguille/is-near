@@ -1,5 +1,3 @@
-
-
 /**
  * hasOwnProperty.
  */
@@ -227,8 +225,8 @@ on(moveEvent, function (eve) {
         coordY = eve.pageY;
 
     } else {
-        coordX = eve.clientX + doc.body.scrollLeft + docEl.scrollLeft;
-        coordY = eve.clientY + doc.body.scrollTop + docEl.scrollTop;
+        coordX = eve.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+        coordY = eve.clientY + document.body.scrollTop + document.documentElement.scrollTop;
     }
 
     mousePoint.x = coordX;
@@ -237,10 +235,10 @@ on(moveEvent, function (eve) {
 });
 
 /**
- * Calculates if the mouse pointer position is near to a given element.
+ * Calculates if the mouse position is near to a given element.
  * @function
  * @param {DOMElement} element - A given DOMElement.
- * @param {Number} padding - padding
+ * @param {Number} [padding] - Number of pixels to create transparent padding.
  * @returns {Boolean}
  */
 function isNear(element, padding) {
@@ -277,4 +275,3 @@ function isNear(element, padding) {
  */
 exports = module.exports = isNear;
 });
-
