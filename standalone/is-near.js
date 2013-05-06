@@ -21,8 +21,8 @@
             coordY = eve.pageY;
 
         } else {
-            coordX = eve.clientX + doc.body.scrollLeft + docEl.scrollLeft;
-            coordY = eve.clientY + doc.body.scrollTop + docEl.scrollTop;
+            coordX = eve.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+            coordY = eve.clientY + document.body.scrollTop + document.documentElement.scrollTop;
         }
 
         mousePoint.x = coordX;
@@ -64,6 +64,24 @@
         }
 
         return near;
+    }
+
+    /**
+     * Expose isNear
+     */
+    // AMD suppport
+    if (typeof window.define === 'function' && window.define.amd !== undefined) {
+        window.define('is-near', [], function () {
+            return isNear;
+        });
+
+    // CommonJS suppport
+    } else if (typeof module !== 'undefined' && module.exports !== undefined) {
+        module.exports = isNear;
+
+    // Default
+    } else {
+        window.isNear = isNear;
     }
 
 }(this));
