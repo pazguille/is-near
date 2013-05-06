@@ -18,8 +18,8 @@ on(moveEvent, function (eve) {
         coordY = eve.pageY;
 
     } else {
-        coordX = eve.clientX + doc.body.scrollLeft + docEl.scrollLeft;
-        coordY = eve.clientY + doc.body.scrollTop + docEl.scrollTop;
+        coordX = eve.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+        coordY = eve.clientY + document.body.scrollTop + document.documentElement.scrollTop;
     }
 
     mousePoint.x = coordX;
