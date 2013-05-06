@@ -53,7 +53,9 @@
                 'bottom': offset.bottom + distance,
                 'left': offset.left - distance
             },
-            near = false;
+            near = false,
+            percentageX = 0,
+            percentageY = 0;
 
         if ((mousePoint.x >= area.left && mousePoint.x <= area.right) && (mousePoint.y >= area.top && mousePoint.y <= area.bottom)) {
 
