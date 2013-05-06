@@ -38,18 +38,23 @@ function isNear(element, padding) {
 
     padding = padding || 100;
 
-    var clientRect = element.getBoundingClientRect(),
-        shadow = {
-            'top': clientRect.top - padding,
-            'right': clientRect.right + padding,
-            'bottom': clientRect.bottom + padding,
-            'left': clientRect.left - padding
+    var offset = {
+            'top': element.offsetTop,
+            'right': element.offsetLeft + element.clientWidth,
+            'bottom': element.offsetTop + element.clientHeight,
+            'left': element.offsetLeft
+        },
+        area = {
+            'top': offset.top - padding,
+            'right': offset.right + padding,
+            'bottom': offset.bottom + padding,
+            'left': offset.left - padding
         },
         near = false;
 
-    if ((mousePoint.x >= shadow.left && mousePoint.x <= shadow.right) && (mousePoint.y >= shadow.top && mousePoint.y <= shadow.bottom)) {
+    if ((mousePoint.x >= area.left && mousePoint.x <= area.right) && (mousePoint.y >= area.top && mousePoint.y <= area.bottom)) {
 
-        if ((mousePoint.x >= clientRect.left && mousePoint.x <= clientRect.right) && (mousePoint.y >= clientRect.top && mousePoint.y <= clientRect.bottom)) {
+        if ((mousePoint.x >= offset.left && mousePoint.x <= offset.right) && (mousePoint.y >= offset.top && mousePoint.y <= offset.bottom)) {
             near = 'inside';
 
         } else {
