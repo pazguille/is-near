@@ -31,12 +31,12 @@ on(moveEvent, function (eve) {
  * Calculates if the mouse position is near to a given element.
  * @function
  * @param {DOMElement} element - A given DOMElement.
- * @param {Number} [padding] - Number of pixels to create transparent padding.
+ * @param {Number} [distance] - Minimum distance (in pixels) between the DOMElement and mouse position.
  * @returns {Boolean}
  */
-function isNear(element, padding) {
+function isNear(element, distance) {
 
-    padding = padding || 100;
+    distance = distance || 100;
 
     var offset = {
             'top': element.offsetTop,
@@ -45,10 +45,10 @@ function isNear(element, padding) {
             'left': element.offsetLeft
         },
         area = {
-            'top': offset.top - padding,
-            'right': offset.right + padding,
-            'bottom': offset.bottom + padding,
-            'left': offset.left - padding
+            'top': offset.top - distance,
+            'right': offset.right + distance,
+            'bottom': offset.bottom + distance,
+            'left': offset.left - distance
         },
         near = false;
 
