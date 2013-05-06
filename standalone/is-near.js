@@ -34,7 +34,7 @@
      * Calculates if the mouse position is near to a given element.
      * @function
      * @param {DOMElement} element - A given DOMElement.
-     * @param {Number} padding - padding
+     * @param {Number} [padding] - Number of pixels to create transparent padding.
      * @returns {Boolean}
      */
     function isNear(element, padding) {
@@ -64,24 +64,6 @@
         }
 
         return near;
-    }
-
-    /**
-     * Expose isNear
-     */
-    // AMD suppport
-    if (typeof window.define === 'function' && window.define.amd !== undefined) {
-        window.define('isNear', [], function () {
-            return isNear;
-        });
-
-    // CommonJS suppport
-    } else if (typeof module !== 'undefined' && module.exports !== undefined) {
-        module.exports = isNear;
-
-    // Default
-    } else {
-        window.isNear = isNear;
     }
 
 }(this));
