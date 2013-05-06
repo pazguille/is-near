@@ -50,7 +50,9 @@ function isNear(element, distance) {
             'bottom': offset.bottom + distance,
             'left': offset.left - distance
         },
-        near = false;
+        near = false,
+        percentageX = 0,
+        percentageY = 0;
 
     if ((mousePoint.x >= area.left && mousePoint.x <= area.right) && (mousePoint.y >= area.top && mousePoint.y <= area.bottom)) {
 
@@ -58,7 +60,29 @@ function isNear(element, distance) {
             near = 'inside';
 
         } else {
-            near = true;
+            // from the left
+            if (mousePoint.x >= area.left && mousePoint.x <= offset.left) {
+              percentageX = (mousePoint.x - area.left) / (offset.left - area.left) * 100;
+
+            // from the right
+            } else if (mousePoint.x >= offset.right && mousePoint.x <= area.right) {
+              percentageX = (area.right - mousePoint.x) / (area.right - offset.right) * 100;
+
+            }
+
+            // from the top
+            if (mousePoint.y >= area.top && mousePoint.y <= offset.top) {
+              percentageY = (mousePoint.y - area.top) / (offset.top - area.top) * 100;
+
+            // from the bottom
+            } else if (mousePoint.y >= offset.bottom && mousePoint.y <= area.bottom) {
+              percentageY = (area.bottom - mousePoint.y) / (area.bottom - offset.bottom) * 100;
+            }
+
+            percentageX = Math.floor(percentageX);
+            percentageY = Math.floor(percentageY);
+
+            near = [percentageX, percentageY];
         }
 
     } else {
