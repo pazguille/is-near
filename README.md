@@ -2,6 +2,15 @@
 
 Calculates if the mouse position is near to a given element.
 
+It's cross-browser compatible:
+- Chrome
+- Firefox
+- Opera
+- Safari
+- IE9
+- IE8
+- IE7
+
 ## Installation
 
     $ component install pazguille/is-near
@@ -14,9 +23,42 @@ Also, you can use the standalone version:
 <script src="is-near.js"></script>
 ```
 
-## How-to [WIP]
+## How-to
 
-## API [WIP]
+```js
+var isNear = require('is-near'),
+    box = document.getElementById('box');
+
+document.addEventListener('mousemove', function () {
+    var near = isNear(box, 50);
+
+    if (near) {
+
+        if (near === 'inside') {
+            box.style.backgroundColor = '#8e44ad';
+            box.innerHTML = 'Inside';
+        } else {
+            box.style.backgroundColor = '#2ecc71';
+            box.innerHTML = 'Yes';
+        }
+
+    } else {
+        box.style.backgroundColor = '#c0392b';
+        box.innerHTML = 'No';
+    }
+});
+```
+
+## API
+
+### isNear(element[, padding])
+Calculates if the mouse position is near to a given `element`. Returns a boolean value (`true` or `false`) or string (`inside`).
+- `element` - A given DOMElement.
+- `padding` [optional] - Number of pixels to create transparent padding.
+
+```js
+isNear(someElement, 20);
+```
 
 ## Contact
 - Guillermo Paz (Frontend developer - JavaScript developer | Web standards lover)
