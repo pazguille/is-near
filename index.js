@@ -31,7 +31,7 @@ on(moveEvent, function (eve) {
  * Calculates if the mouse position is near to a given element.
  * @function
  * @param {DOMElement} element - A given DOMElement.
- * @param {Number} padding - padding
+ * @param {Number} [padding] - Number of pixels to create transparent padding.
  * @returns {Boolean}
  */
 function isNear(element, padding) {
