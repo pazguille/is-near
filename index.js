@@ -2,30 +2,50 @@
  * Module dependencies
  */
 var document = window.document,
+    body = document.body,
+    docEl = document.documentElement,
     on = window.addEventListener || window.attachEvent,
-    moveEvent = (window.attachEvent) ? 'onmousemove' : 'mousemove',
-    mousePoint = {};
+    moveEvent = (on === window.attachEvent) ? 'onmousemove' : 'mousemove',
+    moved = false,
+    requestAnimFrame = (function () {
+        return window.requestAnimationFrame ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame ||
+            function (callback) {
+                window.setTimeout(callback, 1000 / 60);
+            };
+    }()),
+    eve,
+    mousePosition = {};
 
-on(moveEvent, function (eve) {
+function update() {
+
+    if (eve === undefined) { return; }
 
     var coordX = 0,
         coordY = 0;
-
-    eve = eve || window.event;
 
     if (eve.pageX || eve.pageY) {
         coordX = eve.pageX;
         coordY = eve.pageY;
 
     } else {
-        coordX = eve.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-        coordY = eve.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+        coordX = eve.clientX + body.scrollLeft + docEl.scrollLeft;
+        coordY = eve.clientY + body.scrollTop + docEl.scrollTop;
     }
 
-    mousePoint.x = coordX;
-    mousePoint.y = coordY;
+    mousePosition.x = coordX;
+    mousePosition.y = coordY;
 
-});
+    eve = undefined;
+}
+
+on(moveEvent, function captureEvent(e) { eve = e || window.event; });
+
+(function updateloop() {
+    requestAnimFrame(updateloop);
+    update();
+}());
 
 /**
  * Calculates if the mouse position is near to a given element.
@@ -38,23 +58,18 @@ function isNear(element, distance) {
 
     distance = distance || 100;
 
-    var offset = {
-            'top': element.offsetTop,
-            'right': element.offsetLeft + element.clientWidth,
-            'bottom': element.offsetTop + element.clientHeight,
-            'left': element.offsetLeft
-        },
+    var rect = element.getBoundingClientRect(),
         area = {
-            'top': offset.top - distance,
-            'right': offset.right + distance,
-            'bottom': offset.bottom + distance,
-            'left': offset.left - distance
+            'top': rect.top - distance,
+            'right': rect.right + distance,
+            'bottom': rect.bottom + distance,
+            'left': rect.left - distance
         },
         near = false;
 
-    if ((mousePoint.x >= area.left && mousePoint.x <= area.right) && (mousePoint.y >= area.top && mousePoint.y <= area.bottom)) {
+    if ((mousePosition.x >= area.left && mousePosition.x <= area.right) && (mousePosition.y >= area.top && mousePosition.y <= area.bottom)) {
 
-        if ((mousePoint.x >= offset.left && mousePoint.x <= offset.right) && (mousePoint.y >= offset.top && mousePoint.y <= offset.bottom)) {
+        if ((mousePosition.x >= rect.left && mousePosition.x <= rect.right) && (mousePosition.y >= rect.top && mousePosition.y <= rect.bottom)) {
             near = 'inside';
 
         } else {
