@@ -51,7 +51,7 @@ document.addEventListener('mousemove', function () {
 
 ## API
 
-### isNear(element[, distance])
+### isNear(element, [distance])
 Calculates if the mouse position is near to a given `element`. Returns a boolean value (`true` or `false`) or string (`inside`).
 - `element` - A given DOMElement.
 - `distance` [optional] - Minimum distance (in pixels) between the `element` and mouse position.
